@@ -32,7 +32,6 @@ def main(ctx):
         return []
 
     wheel = False
-    labels = env.get("CIRRUS_PR_LABELS", "")
     pr_number = env.get("CIRRUS_PR", "-1")
     tag = env.get("CIRRUS_TAG", "")
 
