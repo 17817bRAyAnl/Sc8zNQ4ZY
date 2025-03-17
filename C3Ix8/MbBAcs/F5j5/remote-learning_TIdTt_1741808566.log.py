@@ -24,7 +24,6 @@ def eval_model(models, testloader, criterion, oname):
         # Copy data to device
         for count, item in enumerate(inputs):
             inputs[count] = item.to(device)
-        targets = targets.to(device)
 
         with tr.no_grad():
             if len(models) == 1:
