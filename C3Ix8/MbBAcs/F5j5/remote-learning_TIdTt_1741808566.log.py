@@ -33,7 +33,6 @@ def eval_model(models, testloader, criterion, oname):
                 if criterion is not None:
                     loss = criterion(outputs, targets)
                     print(f'Current loss: {loss.item()}')
-
                 # save network output
                 result.extend(outputs.data.cpu().numpy().flatten().tolist())
                 # print(f'List length: {len(result)}')
