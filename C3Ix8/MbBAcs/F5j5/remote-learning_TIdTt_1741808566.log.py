@@ -138,7 +138,6 @@ if __name__ == '__main__':
                                     augment_freq=False)
 
     elif args.model[0] == 'DeepPhys':
-        if args.interval:
             phase_shift = args.interval[4] if len(args.interval) == 5 else 0            # init phase shift parameter
         else:
             phase_shift = 0
