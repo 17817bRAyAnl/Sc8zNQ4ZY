@@ -147,7 +147,6 @@ module.exports = grunt => {
 			},
 			test: {
 				files: [ 'test/*.html' ],
-				tasks: 'test'
 			},
 			html: {
 				files: root.map(path => path + '/*.html')
