@@ -2,7 +2,6 @@
 
 FROM golang:1.7
 MAINTAINER Robert Gruener "robertg@spotify.com"
-
 # Install netcat
 RUN apt-get update
 RUN apt-get install -y netcat
