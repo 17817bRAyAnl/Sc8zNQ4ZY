@@ -47,7 +47,6 @@ module.exports = grunt => {
 				src: 'css/reveal.scss',
 				dest: 'css/reveal.css'
 			},
-			themes: {
 				expand: true,
 				cwd: 'css/theme/source',
 				src: ['*.sass', '*.scss'],
