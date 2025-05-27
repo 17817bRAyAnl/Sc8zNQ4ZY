@@ -336,7 +336,6 @@ init-import=no
 # builtins.
 redefining-builtins-modules=six.moves,future.builtins
 
-
 [CLASSES]
 
 # List of method names used to declare (i.e. assign) instance attributes.
