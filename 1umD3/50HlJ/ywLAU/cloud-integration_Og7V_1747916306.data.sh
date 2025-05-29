@@ -27,7 +27,6 @@ compile_linux() {
         ;;
     esac
     
-    go env -w GOARCH=${ARCH}
     #删除原有的编译文件
     rm -rf main zdir
 
