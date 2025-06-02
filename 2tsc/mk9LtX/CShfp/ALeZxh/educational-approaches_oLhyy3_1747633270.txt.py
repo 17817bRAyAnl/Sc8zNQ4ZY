@@ -1,7 +1,6 @@
 import itertools
 import string
 import time
-
 # Define all characters to use in the password
 chars = string.printable
 
