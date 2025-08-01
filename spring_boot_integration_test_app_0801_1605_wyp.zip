@@ -1,0 +1,52 @@
+// 代码生成时间: 2025-08-01 16:05:22
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import java.util.HashMap;
+import java.util.Map;
+import org.springframework.http.HttpStatus;
+
+@SpringBootApplication
+@RestController
+@RequestMapping("/api")
+public class DemoApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
+    }
+
+    @GetMapping("/hello")
+    public Map<String, String> hello() {
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Hello from Spring Boot!");
+        return response;
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleException(Exception ex) {
+        Map<String, Object> response = new HashMap<>();
+        response.put("error", ex.getMessage());
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+
+// Exception Handling
+// If an exception occurs, this method is called to handle the exception and return a proper response
+// The `@ExceptionHandler` annotation marks this method to handle exceptions of the specified type
+// The `ResponseEntity` object is used to create a response with a status code and body
+
+// REST API
+// The `/hello` endpoint returns a simple greeting message when accessed
+// The `@GetMapping` annotation specifies that this method should respond to GET requests
+// The `@RequestMapping` annotation specifies the base path for the REST API
+
+// Spring Boot Annotations
+// `@SpringBootApplication` annotation marks the class as a Spring Boot application
+// `@RestController` annotation indicates that this class is a controller with a RESTful API
+// `@RequestMapping` annotation specifies the base path for all endpoints in this controller
