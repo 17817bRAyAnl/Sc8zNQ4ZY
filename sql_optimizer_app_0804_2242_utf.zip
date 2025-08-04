@@ -1,0 +1,56 @@
+// 代码生成时间: 2025-08-04 22:42:03
+package com.example.sqloptimizer;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.http.HttpStatus;
+
+@SpringBootApplication
+public class SqlOptimizerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SqlOptimizerApplication.class, args);
+    }
+}
+
+@RestController
+class SqlQueryController {
+
+    private final SqlQueryService sqlQueryService;
+
+    public SqlQueryController(SqlQueryService sqlQueryService) {
+        this.sqlQueryService = sqlQueryService;
+    }
+
+    @GetMapping("/optimize")
+    public ResponseEntity<String> optimizeQuery(@RequestParam String query) {
+        try {
+            String optimizedQuery = sqlQueryService.optimizeQuery(query);
+            return ResponseEntity.ok(optimizedQuery);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+}
+
+class SqlQueryService {
+
+    public String optimizeQuery(String query) {
+        // Here you would implement your actual SQL query optimization logic
+        // This is just a placeholder for demonstration purposes.
+        return "SELECT * FROM table WHERE column = 'value'";
+    }
+}
+
+@ExceptionHandler(IllegalArgumentException.class)
+class CustomExceptionHandler {
+
+    public ResponseEntity<String> handleException(IllegalArgumentException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+}
