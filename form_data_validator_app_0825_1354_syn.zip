@@ -1,0 +1,54 @@
+// 代码生成时间: 2025-08-25 13:54:21
+package com.formdatavalidator;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import javax.validation.Valid;
+
+@SpringBootApplication
+@RestController
+public class FormDataValidatorApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(FormDataValidatorApplication.class, args);
+    }
+
+    @PostMapping("/form-validate")
+    public ResponseEntity<?> validateFormData(@Valid @RequestBody FormData formData) {
+        // 实际验证逻辑，这里只是简单返回
+        return ResponseEntity.ok("Form data is valid");
+    }
+
+    // 异常处理
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = Exception.class)
+    public ResponseEntity<String> handleException(Exception e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    // Form data model
+    static class FormData {
+        private String name;
+        private int age;
+
+        // Getters and Setters
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public void setAge(int age) {
+            this.age = age;
+        }
+    }
+}
