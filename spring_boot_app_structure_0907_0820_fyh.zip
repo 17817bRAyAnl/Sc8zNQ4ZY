@@ -1,0 +1,28 @@
+// 代码生成时间: 2025-09-07 08:20:54
+zip file containing multiple files
+/spring_boot_app_structure
+# 扩展功能模块
+    |- src
+        |- main
+            |- java
+                |- com
+                    |- example
+                        |- demoapp
+                            |- DemoApplication.java
+                            |- controller
+# 增强安全性
+                                |- DemoController.java
+# 优化算法效率
+                            |- exception
+                                |- CustomExceptionHandler.java
+                            |- model
+                                |- DemoModel.java
+                            |- repository
+                                |- DemoRepository.java
+                            |- service
+                                |- DemoService.java
+            |- resources
+# TODO: 优化性能
+                |- application.properties
+/README.md
+/.gitignore
