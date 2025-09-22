@@ -1,0 +1,102 @@
+// 代码生成时间: 2025-09-23 00:51:34
+package com.example.monitoring;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SystemPerformanceMonitoringApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(SystemPerformanceMonitoringApplication.class, args);
+    }
+}
+
+/src/main/java/com/example/monitoring/controller/SystemPerformanceController.java
+package com.example.monitoring.controller;
+
+import com.example.monitoring.dto.SystemPerformanceDTO;
+import com.example.monitoring.service.SystemPerformanceService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/monitoring")
+public class SystemPerformanceController {
+    @Autowired
+    private SystemPerformanceService performanceService;
+
+    @GetMapping("/performance")
+    public ResponseEntity<SystemPerformanceDTO> getSystemPerformance() {
+        try {
+            SystemPerformanceDTO performance = performanceService.getSystemPerformance();
+            return ResponseEntity.ok(performance);
+        } catch (Exception e) {
+            // Log the exception
+            return ResponseEntity.internalServerError().body(null);
+        }
+    }
+}
+
+/src/main/java/com/example/monitoring/exception/GlobalExceptionHandler.java
+package com.example.monitoring.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.WebRequest;
+
+@ControllerAdvice
+public class GlobalExceptionHandler {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Object> handleException(Exception ex, WebRequest request) {
+        // Log the exception
+        return new ResponseEntity<>("An error occurred: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+
+/src/main/java/com/example/monitoring/model/SystemPerformance.java
+package com.example.monitoring.model;
+
+public class SystemPerformance {
+    private String cpuUsage;
+    private String memoryUsage;
+    private String diskUsage;
+    // getters and setters
+}
+
+/src/main/java/com/example/monitoring/service/SystemPerformanceService.java
+package com.example.monitoring.service;
+
+import com.example.monitoring.model.SystemPerformance;
+import org.springframework.stereotype.Service;
+
+@Service
+public class SystemPerformanceService {
+    public SystemPerformance getSystemPerformance() {
+        // Implement logic to fetch system performance metrics
+        // For demonstration, returning mock data
+        SystemPerformance performance = new SystemPerformance();
+        performance.setCpuUsage("80%");
+        performance.setMemoryUsage("60%");
+        performance.setDiskUsage("70%");
+        return performance;
+    }
+}
+
+/src/main/java/com/example/monitoring/dto/SystemPerformanceDTO.java
+package com.example.monitoring.dto;
+
+public class SystemPerformanceDTO {
+    private String cpuUsage;
+    private String memoryUsage;
+    private String diskUsage;
+    // getters and setters
+}
+
+/pom.xml
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+tx
